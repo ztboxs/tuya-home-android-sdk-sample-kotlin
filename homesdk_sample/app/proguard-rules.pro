@@ -44,3 +44,7 @@
 # Matter SDK
 -keep class chip.** { *; }
 -dontwarn chip.**
+
+#MINI SDK
+-keep class com.gzl.smart.** { *; }
+-dontwarn com.gzl.smart.**
