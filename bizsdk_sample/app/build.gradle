@@ -6,16 +6,7 @@ plugins {
 android {
     namespace 'com.thing.appbizsdk.sample'
     compileSdk 33
-    signingConfigs {
-        debug {
-            storeFile file("debug.keystore") //1.Replace with the added SHA256 debug certificate file containing your own information.
-            storePassword "android"
-            keyAlias "AndroidDebugKey"
-            keyPassword "android"
-            v1SigningEnabled true
-            v2SigningEnabled true
-        }
-    }
+
     defaultConfig {
         applicationId "com.thing.appbizsdk.sample" //2.Use your own app ID
         minSdkVersion 23
@@ -75,7 +66,7 @@ dependencies {
     //5.Remember to add the downloaded security library（security-algorithm-1.0.0-beta.aar） to the libs folder.
     implementation fileTree(dir: "libs", include: ["*.jar","*.aar"])
 
-    implementation "androidx.core:core-ktx:${kotlin_version}"
+    implementation "androidx.core:core-ktx:1.9.0"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.1'

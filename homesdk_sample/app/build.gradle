@@ -12,25 +12,39 @@ android {
     namespace "com.tuya.appsdk.sample"
 
     defaultConfig {
-        applicationId "com.test007.demo"
+        applicationId "com.zhiguang.app"
         minSdkVersion 23
         targetSdkVersion 34
         versionCode 1
         versionName "1.0"
 
-        Properties properties = new Properties()
-        properties.load(project.rootProject.file('local.properties').newDataInputStream())
         manifestPlaceholders = [
-                TUYA_SMART_APPKEY: "${properties.getProperty("appKey")}",
-                TUYA_SMART_SECRET: "${properties.getProperty("appSecret")}",
-                AI_SOLUTION_CODE : "${properties.getProperty("aiSolutionCode", "")}",
-                MINI_PROGRAM_ID  : "${properties.getProperty("miniProgramId", "")}"
+                TUYA_SMART_APPKEY: project.hasProperty('TUYA_SMART_APPKEY') ? TUYA_SMART_APPKEY : "",
+                TUYA_SMART_SECRET: project.hasProperty('TUYA_SMART_SECRET') ? TUYA_SMART_SECRET : "",
+                AI_SOLUTION_CODE : project.hasProperty('AI_SOLUTION_CODE') ? AI_SOLUTION_CODE : "",
+                MINI_PROGRAM_ID  : project.hasProperty('MINI_PROGRAM_ID') ? MINI_PROGRAM_ID : ""
         ]
 
         ndk {
             abiFilters "armeabi-v7a", "arm64-v8a"
         }
     }
+
+    signingConfigs {
+        debug {
+            storeFile file('/Users/Apple/Downloads/A1AJOB/tuya/demo/tuya-home-android-sdk-sample-kotlin/homesdk_sample/jks/zhiguangdemo.jks')
+            storePassword '123456'
+            keyAlias 'release'
+            keyPassword '123456'
+        }
+        release {
+            storeFile file('/Users/Apple/Downloads/A1AJOB/tuya/demo/tuya-home-android-sdk-sample-kotlin/homesdk_sample/jks/zhiguangdemo.jks')
+            storePassword '123456'
+            keyAlias 'release'
+            keyPassword '123456'
+        }
+    }
+
     lintOptions {
         abortOnError false
     }
@@ -65,6 +79,7 @@ configurations.all {
 }
 
 dependencies {
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
     implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

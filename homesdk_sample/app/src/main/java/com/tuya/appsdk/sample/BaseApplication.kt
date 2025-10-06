@@ -13,15 +13,7 @@
 package com.tuya.appsdk.sample
 
 import android.app.Application
-import com.tuya.smart.android.demo.camera.CameraUtils
 import com.thingclips.smart.home.sdk.ThingHomeSdk
-import com.thingclips.smart.optimus.sdk.ThingOptimusSdk
-import com.uuzuche.lib_zxing.activity.ZXingLibrary
-
-
-
-
-
 
 
 /**
@@ -30,14 +22,20 @@ import com.uuzuche.lib_zxing.activity.ZXingLibrary
  * @author qianqi <a href="mailto:developer@tuya.com"/>
  * @since 2021/1/6 11:50 AM
  */
+//class BaseApplication : Application() {
+//    override fun onCreate() {
+//        super.onCreate()
+//
+//        ThingHomeSdk.init(this)
+//        ThingHomeSdk.setDebugMode(true)
+//        ThingOptimusSdk.init(this)
+//        ZXingLibrary.initDisplayOpinion(this)
+//        CameraUtils.init(this)
+//    }
+//}
 class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-
         ThingHomeSdk.init(this)
-        ThingHomeSdk.setDebugMode(true)
-        ThingOptimusSdk.init(this)
-        ZXingLibrary.initDisplayOpinion(this)
-        CameraUtils.init(this)
     }
 }
